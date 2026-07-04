@@ -113,7 +113,6 @@ ul.task-list li input[type="checkbox"] {
    
   <ul class="collapse">
   <li><a href="#what-i-was-thinking" id="toc-what-i-was-thinking" class="nav-link active" data-scroll-target="#what-i-was-thinking">What I was thinking</a></li>
-  <li><a href="#the-two-tools-briefly" id="toc-the-two-tools-briefly" class="nav-link" data-scroll-target="#the-two-tools-briefly">The two tools, briefly</a></li>
   <li><a href="#setup-the-short-version" id="toc-setup-the-short-version" class="nav-link" data-scroll-target="#setup-the-short-version">Setup (the short version)</a></li>
   <li><a href="#step-1-the-fv-steers-the-write-side-works" id="toc-step-1-the-fv-steers-the-write-side-works" class="nav-link" data-scroll-target="#step-1-the-fv-steers-the-write-side-works">Step 1: the FV steers (the write side works)</a></li>
   <li><a href="#step-2-the-fv-does-not-verbalize-the-read-side-fails" id="toc-step-2-the-fv-does-not-verbalize-the-read-side-fails" class="nav-link" data-scroll-target="#step-2-the-fv-does-not-verbalize-the-read-side-fails">Step 2: the FV does not verbalize (the read side fails)</a></li>
@@ -160,13 +159,7 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="what-i-was-thinking" class="level2">
 <h2 class="anchored" data-anchor-id="what-i-was-thinking">What I was thinking</h2>
-<p>I was interested in seeing whether NLAs could be used to understand function vectors, with the potentially broader goal of using NLAs to enable the creation of more general FVs than currently exist in the literature — which are limited to fairly concrete, mechanical operations, with not much in the way of higher-level FVs. But after applying an FV, neither the NLA verbalization nor the AR re-embedding preserved the effect of the FV.</p>
-</section>
-<section id="the-two-tools-briefly" class="level2">
-<h2 class="anchored" data-anchor-id="the-two-tools-briefly">The two tools, briefly</h2>
-<p><strong>Function vectors (FVs)</strong> [Todd et al., 2023]. Give a model a few in-context examples of a task — <code>France→Paris, Japan→Tokyo, ...</code> — and it forms a compact internal representation of “the task.” You can pull this out as a single vector (a sum of the outputs of the attention heads that carry the task) and <em>inject</em> it into a fresh, example-free pass to make the model do the task with no demonstrations. FVs are a <strong>write</strong> interface: a handle you add to the residual stream to make the model <em>do</em> something.</p>
-<p><strong>Natural-language autoencoders (NLAs)</strong> [Anthropic / Transformer Circuits, 2026]. A pair of fine-tuned models. The <em>verbalizer</em> takes an activation and writes an English description of what it represents; the <em>reconstructor</em> goes back from English to a vector. NLAs are a <strong>read</strong> interface.</p>
-<p>The idea I was chasing: FVs write, NLAs read — so point the reader at the writer and get <strong>legible, nameable task primitives</strong>. Extract an FV, verbalize it, and it should describe its task. The first thing to check is the most basic link: does an FV verbalize as its task at all?</p>
+<p>I was interested in seeing whether <a href="https://transformer-circuits.pub/2026/nla/index.html">NLAs</a> could be used to understand <a href="https://arxiv.org/abs/2310.15213">function vectors</a>, with the potentially broader goal of using NLAs to enable the creation of more general FVs than currently exist in the literature — which are limited to fairly concrete, mechanical operations, with not much in the way of higher-level FVs. But after applying an FV, neither the NLA verbalization nor the AR re-embedding preserved the effect of the FV.</p>
 </section>
 <section id="setup-the-short-version" class="level2">
 <h2 class="anchored" data-anchor-id="setup-the-short-version">Setup (the short version)</h2>
