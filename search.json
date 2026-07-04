@@ -53,6 +53,6 @@
     "href": "posts/fv-not-legible/index.html#caveats",
     "title": "Function vectors don’t make it through natural-language autoencoders",
     "section": "Caveats",
-    "text": "Caveats\nOne task, one model, one FV — the dissociation could be task- or model-specific. The metric leans on a lossy reconstructor (the +0.22 positive/negative separation says it’s good enough to trust a null of this size, not that it’s exact). And “verbalizable gist” is my interpretation of what the NLA reads — a different readout might surface the FV, which is exactly the follow-up, not a settled claim."
+    "text": "Caveats\nI tried one task, one model, and one FV. Hardly thorough, but enough to get me to move on to other things."
   }
 ]
