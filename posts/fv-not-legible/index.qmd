@@ -36,7 +36,7 @@ Two ways to read it, both fail:
 
 But that was **prompt leakage** — the prompt already said "France." Redo it on **neutral prompts** with no geography (`"The answer is"`, `"I think that"`, `"It is"`) and the country/capital signal vanishes. With and without the FV, the verbalizations are basically identical, and neither mentions countries or capitals.
 
-## Step 3: making the negative airtight
+## Step 3: verifying the negative
 
 A null only means something if the instrument can detect a true positive and you pushed the intervention hard enough. Two controls:
 
