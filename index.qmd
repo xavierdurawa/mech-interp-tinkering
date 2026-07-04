@@ -1,5 +1,5 @@
 ---
-title: "mech-interp-tinkering"
+title: "Mechanistic Interpretability Tinkering"
 listing:
   contents: posts
   sort: "date desc"

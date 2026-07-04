@@ -3,13 +3,12 @@ project:
   output-dir: _site
 
 website:
-  title: "mech-interp-tinkering"
-  description: "Informal notes and write-ups from poking at language-model internals."
+  title: "Mechanistic Interpretability Tinkering"
+  description: "Notes and write-ups from tinkering with language-model internals."
   navbar:
     left:
       - text: "Home"
         href: index.qmd
-  page-footer: "Informal musings — not peer-reviewed, not always followed up on."
 
 format:
   html:
