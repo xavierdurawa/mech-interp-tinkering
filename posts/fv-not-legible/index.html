@@ -112,8 +112,7 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul class="collapse">
-  <li><a href="#the-one-sentence-version" id="toc-the-one-sentence-version" class="nav-link active" data-scroll-target="#the-one-sentence-version">The one-sentence version</a></li>
-  <li><a href="#what-i-was-thinking" id="toc-what-i-was-thinking" class="nav-link" data-scroll-target="#what-i-was-thinking">What I was thinking</a></li>
+  <li><a href="#what-i-was-thinking" id="toc-what-i-was-thinking" class="nav-link active" data-scroll-target="#what-i-was-thinking">What I was thinking</a></li>
   <li><a href="#the-two-tools-briefly" id="toc-the-two-tools-briefly" class="nav-link" data-scroll-target="#the-two-tools-briefly">The two tools, briefly</a></li>
   <li><a href="#setup-the-short-version" id="toc-setup-the-short-version" class="nav-link" data-scroll-target="#setup-the-short-version">Setup (the short version)</a></li>
   <li><a href="#step-1-the-fv-steers-the-write-side-works" id="toc-step-1-the-fv-steers-the-write-side-works" class="nav-link" data-scroll-target="#step-1-the-fv-steers-the-write-side-works">Step 1: the FV steers (the write side works)</a></li>
@@ -159,11 +158,6 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="the-one-sentence-version" class="level2">
-<h2 class="anchored" data-anchor-id="the-one-sentence-version">The one-sentence version</h2>
-<p>I tried to read what a <em>function vector</em> “means” by feeding it through a <em>natural-language autoencoder</em> — a tool that turns a model’s internal activations into English. It doesn’t work. And the way it fails is the interesting part: the <strong>exact same function vector that provably steers the model’s behavior leaves no trace in the language readout of the state it produces</strong>. Steering and verbalizability come apart.</p>
-<p>This came out of a ~1-day pilot for a bigger idea that the pilot then killed. Writing it up because the negative is clean and the dissociation is easy to assume away.</p>
-</section>
 <section id="what-i-was-thinking" class="level2">
 <h2 class="anchored" data-anchor-id="what-i-was-thinking">What I was thinking</h2>
 <p>I was interested in seeing whether NLAs could be used to understand function vectors, with the potentially broader goal of using NLAs to enable the creation of more general FVs than currently exist in the literature — which are limited to fairly concrete, mechanical operations, with not much in the way of higher-level FVs. But after applying an FV, neither the NLA verbalization nor the AR re-embedding preserved the effect of the FV.</p>
