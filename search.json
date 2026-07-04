@@ -4,7 +4,7 @@
     "href": "index.html",
     "title": "Mechanistic Interpretability Tinkering",
     "section": "",
-    "text": "Informal notes from tinkering with the internals of language models.\n\n\n\n\n\n\n\n\n\nFunction vectors don’t make it through natural-language autoencoders\n\n\nA small controlled negative — and a dissociation worth noticing: the same vector that steers a model leaves no trace in its language readout.\n\n\n\n\n\nJul 3, 2026\n\n\n\n\n\nNo matching items"
+    "text": "Informal notes from tinkering with the internals of language models.\n\n\n\n\n\n\n\n\n\nFunction vectors don’t make it through natural-language autoencoders\n\n\nI was interested whether we could see the effect of function vectors on NLA verbalizations. Looks like we can’t.\n\n\n\n\n\nJul 3, 2026\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "posts/fv-not-legible/index.html",
