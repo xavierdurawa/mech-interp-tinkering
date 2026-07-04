@@ -4,75 +4,75 @@
     "href": "index.html",
     "title": "mech-interp-tinkering",
     "section": "",
-    "text": "Informal notes from tinkering with the internals of language models. These are musings and small experiments — some pan out, most don’t, and I write up the interesting ones (including the ones that didn’t work). Not peer-reviewed, not exhaustive. If something here ever turns into a real result, it’ll get its own repo and I’ll link it.\n\n\n\n\n\n\n\n\n\nFunction vectors steer behavior but don’t ‘read out’ in language\n\n\nA small controlled negative — and a dissociation worth noticing: the same vector that steers a model leaves no trace in its language readout.\n\n\n\n\n\nJul 3, 2026\n\n\n\n\n\nNo matching items"
+    "text": "Informal notes from tinkering with the internals of language models.\n\n\n\n\n\n\n\n\n\nFunction vectors don’t make it through natural-language autoencoders\n\n\nA small controlled negative — and a dissociation worth noticing: the same vector that steers a model leaves no trace in its language readout.\n\n\n\n\n\nJul 3, 2026\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "posts/fv-not-legible/index.html",
     "href": "posts/fv-not-legible/index.html",
-    "title": "Function vectors steer behavior but don’t ‘read out’ in language",
+    "title": "Function vectors don’t make it through natural-language autoencoders",
     "section": "",
     "text": "I tried to read what a function vector “means” by feeding it through a natural-language autoencoder — a tool that turns a model’s internal activations into English. It doesn’t work. And the way it fails is the interesting part: the exact same function vector that provably steers the model’s behavior leaves no trace in the language readout of the state it produces. Steering and verbalizability come apart.\nThis came out of a ~1-day pilot for a bigger idea that the pilot then killed. Writing it up because the negative is clean and the dissociation is easy to assume away."
   },
   {
     "objectID": "posts/fv-not-legible/index.html#the-one-sentence-version",
     "href": "posts/fv-not-legible/index.html#the-one-sentence-version",
-    "title": "Function vectors steer behavior but don’t ‘read out’ in language",
+    "title": "Function vectors don’t make it through natural-language autoencoders",
     "section": "",
     "text": "I tried to read what a function vector “means” by feeding it through a natural-language autoencoder — a tool that turns a model’s internal activations into English. It doesn’t work. And the way it fails is the interesting part: the exact same function vector that provably steers the model’s behavior leaves no trace in the language readout of the state it produces. Steering and verbalizability come apart.\nThis came out of a ~1-day pilot for a bigger idea that the pilot then killed. Writing it up because the negative is clean and the dissociation is easy to assume away."
   },
   {
     "objectID": "posts/fv-not-legible/index.html#the-two-tools-briefly",
     "href": "posts/fv-not-legible/index.html#the-two-tools-briefly",
-    "title": "Function vectors steer behavior but don’t ‘read out’ in language",
+    "title": "Function vectors don’t make it through natural-language autoencoders",
     "section": "The two tools, briefly",
     "text": "The two tools, briefly\nFunction vectors (FVs) [Todd et al., 2023]. Give a model a few in-context examples of a task — France→Paris, Japan→Tokyo, ... — and it forms a compact internal representation of “the task.” You can pull this out as a single vector (a sum of the outputs of the attention heads that carry the task) and inject it into a fresh, example-free pass to make the model do the task with no demonstrations. FVs are a write interface: a handle you add to the residual stream to make the model do something.\nNatural-language autoencoders (NLAs) [Anthropic / Transformer Circuits, 2026]. A pair of fine-tuned models. The verbalizer takes an activation and writes an English description of what it represents; the reconstructor goes back from English to a vector. NLAs are a read interface.\nThe idea I was chasing: FVs write, NLAs read — so point the reader at the writer and get legible, nameable task primitives. Extract an FV, verbalize it, and it should describe its task. The first thing to check is the most basic link: does an FV verbalize as its task at all?"
   },
   {
     "objectID": "posts/fv-not-legible/index.html#setup-the-short-version",
     "href": "posts/fv-not-legible/index.html#setup-the-short-version",
-    "title": "Function vectors steer behavior but don’t ‘read out’ in language",
+    "title": "Function vectors don’t make it through natural-language autoencoders",
     "section": "Setup (the short version)",
     "text": "Setup (the short version)\nQwen2.5-7B-Instruct on a laptop, forward-pass only, no training. The NLA is Anthropic’s released Qwen checkpoint pair that reads/writes the layer-20 residual stream. The function vector is for the country→capital task, extracted with Todd et al.’s method. To avoid eyeballing paragraphs, I score a verbalization by reconstructing it back to a vector and measuring cosine similarity to a “country→capital” target vector — higher means the verbalization’s meaning is nearer “country→capital.” (The reconstructor is itself lossy, so this metric isn’t ground truth — which is why the controls below matter.)"
   },
   {
     "objectID": "posts/fv-not-legible/index.html#step-1-the-fv-steers-the-write-side-works",
     "href": "posts/fv-not-legible/index.html#step-1-the-fv-steers-the-write-side-works",
-    "title": "Function vectors steer behavior but don’t ‘read out’ in language",
+    "title": "Function vectors don’t make it through natural-language autoencoders",
     "section": "Step 1: the FV steers (the write side works)",
     "text": "Step 1: the FV steers (the write side works)\nAdd the country→capital FV at layer 17 of a zero-shot Q: &lt;country&gt;\\nA: prompt and look at the next token:\n\nQ: France\\nA: → “Paris” enters the top-3 (9.1%) only with the FV, absent from the clean run.\nQ: Japan\\nA: → “Tokyo” enters the top-3 (5.5%) only with the FV.\n\nModest — this is 7B zero-shot, not the ideal in-context setup — but unambiguous. The write side works."
   },
   {
     "objectID": "posts/fv-not-legible/index.html#step-2-the-fv-does-not-verbalize-the-read-side-fails",
     "href": "posts/fv-not-legible/index.html#step-2-the-fv-does-not-verbalize-the-read-side-fails",
-    "title": "Function vectors steer behavior but don’t ‘read out’ in language",
+    "title": "Function vectors don’t make it through natural-language autoencoders",
     "section": "Step 2: the FV does not verbalize (the read side fails)",
     "text": "Step 2: the FV does not verbalize (the read side fails)\nTwo ways to read it, both fail:\n(a) Verbalize the raw FV. Feed it straight to the verbalizer → incoherent stuff about “structured math / TensorFlow / the number 15.” No geography. Unsurprising in hindsight: a raw FV is a sum of head outputs, not a state the model actually occupies, so it’s off-distribution for a verbalizer trained on real activations.\n(b) Verbalize the FV’s effect. The principled version: add the FV during a forward pass and verbalize the actual layer-20 state it produces (a real, on-distribution activation, just nudged). At first this looked like it worked — the FV-steered Q: France\\nA: verbalized as “…what is the capital of…trivia about a country…”.\nBut that was prompt leakage — the prompt already said “France.” Redo it on neutral prompts with no geography (\"The answer is\", \"I think that\", \"It is\") and the country/capital signal vanishes. With and without the FV, the verbalizations are basically identical, and neither mentions countries or capitals."
   },
   {
     "objectID": "posts/fv-not-legible/index.html#step-3-making-the-negative-airtight",
     "href": "posts/fv-not-legible/index.html#step-3-making-the-negative-airtight",
-    "title": "Function vectors steer behavior but don’t ‘read out’ in language",
+    "title": "Function vectors don’t make it through natural-language autoencoders",
     "section": "Step 3: making the negative airtight",
     "text": "Step 3: making the negative airtight\nA null only means something if the instrument can detect a true positive and you pushed the intervention hard enough. Two controls:\n\nPositive control: score real country→capital states (the layer-20 activation at the answer position of “The capital of France is”) vs. clearly-unrelated states (2+2=, python code, “once upon a time”).\nStrong injection: re-run (b) at injection strengths ×1, ×3, ×5, ×8. At ×8 the state is heavily perturbed (cosine to clean drops to 0.62), so this is not a timid nudge.\n\nEverything on one axis:\n\n\n\nFunction-vector-injected states verbalize like unrelated states, not like real country→capital states — even at 8× injection.\n\n\n\nReal capital states: ~0.76. The metric lights up; the verbalizer even describes them as “a famous city in Japan… what is the capital of…”. The instrument is not blind.\nUnrelated states: ~0.55.\nFV-injected states: ~0.54, flat from ×1 to ×8. They sit in the unrelated band and never move toward the capital band, even when the injection nearly breaks the state.\n\nSo the null in Step 2 is real — not a dead metric, not a too-gentle nudge."
   },
   {
     "objectID": "posts/fv-not-legible/index.html#the-finding-steering-verbalizability",
     "href": "posts/fv-not-legible/index.html#the-finding-steering-verbalizability",
-    "title": "Function vectors steer behavior but don’t ‘read out’ in language",
+    "title": "Function vectors don’t make it through natural-language autoencoders",
     "section": "The finding: steering ≠ verbalizability",
     "text": "The finding: steering ≠ verbalizability\n\nThe same function vector that provably changes the model’s behavior (makes it say “Paris”/“Tokyo”) produces no detectable change in the natural-language readout of the resulting state — while a genuine country/capital context reads out loud and clear.\n\nIn other words: function vectors act on the model’s predictive machinery without altering the gist that a natural-language autoencoder reads. Behavioral effect and verbalizable content are separable properties of an activation.\nA little counterintuitive if you started (like I did) from “FVs write, NLAs read, so NLAs should read what FVs write.” They operate at different granularities. The verbalizer describes the dominant content of a state; an FV is a directional nudge that reshapes the next-token distribution without necessarily changing what the state is mostly “about.” The reader and the writer aren’t looking at the same thing."
   },
   {
     "objectID": "posts/fv-not-legible/index.html#why-im-stopping-here-and-what-it-opens",
     "href": "posts/fv-not-legible/index.html#why-im-stopping-here-and-what-it-opens",
-    "title": "Function vectors steer behavior but don’t ‘read out’ in language",
+    "title": "Function vectors don’t make it through natural-language autoencoders",
     "section": "Why I’m stopping here (and what it opens)",
     "text": "Why I’m stopping here (and what it opens)\nThe idea this pilot was testing — a legible read/write loop over task primitives — needs the reader to see what the writer wrote. It can’t, at least not with these two tools used this way. So that idea’s out.\nBut the dissociation suggests a better-posed question, if I (or anyone) wanted to chase it: when can and can’t natural-language readouts detect activation-space interventions? FVs are one point — behavioral steering, invisible to the readout. SAE-feature steering, lower-rank perturbations, interventions at the read layer, other readout methods (patchscopes, probes) — those are all open. Mapping which interventions are legible and which are silent would be a real thing. This is just the first data point."
   },
   {
     "objectID": "posts/fv-not-legible/index.html#caveats",
     "href": "posts/fv-not-legible/index.html#caveats",
-    "title": "Function vectors steer behavior but don’t ‘read out’ in language",
+    "title": "Function vectors don’t make it through natural-language autoencoders",
     "section": "Caveats",
     "text": "Caveats\nOne task, one model, one FV — the dissociation could be task- or model-specific. The metric leans on a lossy reconstructor (the +0.22 positive/negative separation says it’s good enough to trust a null of this size, not that it’s exact). And “verbalizable gist” is my interpretation of what the NLA reads — a different readout might surface the FV, which is exactly the follow-up, not a settled claim."
   }
