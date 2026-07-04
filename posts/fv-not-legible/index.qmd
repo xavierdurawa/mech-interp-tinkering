@@ -53,20 +53,6 @@ Everything on one axis:
 
 So the null in Step 2 is real — not a dead metric, not a too-gentle nudge.
 
-## The finding: steering ≠ verbalizability
-
-> The **same function vector** that provably changes the model's behavior (makes it say "Paris"/"Tokyo") produces **no detectable change** in the natural-language readout of the resulting state — while a genuine country/capital context reads out loud and clear.
-
-In other words: **function vectors act on the model's *predictive* machinery without altering the *gist* that a natural-language autoencoder reads.** Behavioral effect and verbalizable content are separable properties of an activation.
-
-A little counterintuitive if you started (like I did) from "FVs write, NLAs read, so NLAs should read what FVs write." They operate at different granularities. The verbalizer describes the *dominant content* of a state; an FV is a *directional nudge* that reshapes the next-token distribution without necessarily changing what the state is mostly "about." The reader and the writer aren't looking at the same thing.
-
-## Why I'm stopping here (and what it opens)
-
-The idea this pilot was testing — a legible read/write loop over task primitives — needs the reader to see what the writer wrote. It can't, at least not with these two tools used this way. So that idea's out.
-
-But the dissociation suggests a better-posed question, if I (or anyone) wanted to chase it: **when *can* and *can't* natural-language readouts detect activation-space interventions?** FVs are one point — behavioral steering, invisible to the readout. SAE-feature steering, lower-rank perturbations, interventions at the read layer, other readout methods (patchscopes, probes) — those are all open. Mapping which interventions are legible and which are silent would be a real thing. This is just the first data point.
-
 ## Caveats
 
 One task, one model, one FV — the dissociation could be task- or model-specific. The metric leans on a lossy reconstructor (the +0.22 positive/negative separation says it's good enough to trust a null of this size, not that it's exact). And "verbalizable gist" is my interpretation of what the NLA reads — a different readout might surface the FV, which is exactly the follow-up, not a settled claim.
