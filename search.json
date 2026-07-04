@@ -21,6 +21,13 @@
     "text": "I tried to read what a function vector “means” by feeding it through a natural-language autoencoder — a tool that turns a model’s internal activations into English. It doesn’t work. And the way it fails is the interesting part: the exact same function vector that provably steers the model’s behavior leaves no trace in the language readout of the state it produces. Steering and verbalizability come apart.\nThis came out of a ~1-day pilot for a bigger idea that the pilot then killed. Writing it up because the negative is clean and the dissociation is easy to assume away."
   },
   {
+    "objectID": "posts/fv-not-legible/index.html#what-i-was-thinking",
+    "href": "posts/fv-not-legible/index.html#what-i-was-thinking",
+    "title": "Function vectors don’t make it through natural-language autoencoders",
+    "section": "What I was thinking",
+    "text": "What I was thinking\nI was interested in seeing whether NLAs could be used to understand function vectors, with the potentially broader goal of using NLAs to enable the creation of more general FVs than currently exist in the literature — which are limited to fairly concrete, mechanical operations, with not much in the way of higher-level FVs. But after applying an FV, neither the NLA verbalization nor the AR re-embedding preserved the effect of the FV."
+  },
+  {
     "objectID": "posts/fv-not-legible/index.html#the-two-tools-briefly",
     "href": "posts/fv-not-legible/index.html#the-two-tools-briefly",
     "title": "Function vectors don’t make it through natural-language autoencoders",
