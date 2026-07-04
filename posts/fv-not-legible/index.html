@@ -116,7 +116,7 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#setup-the-short-version" id="toc-setup-the-short-version" class="nav-link" data-scroll-target="#setup-the-short-version">Setup (the short version)</a></li>
   <li><a href="#step-1-the-fv-steers-the-write-side-works" id="toc-step-1-the-fv-steers-the-write-side-works" class="nav-link" data-scroll-target="#step-1-the-fv-steers-the-write-side-works">Step 1: the FV steers (the write side works)</a></li>
   <li><a href="#step-2-the-fv-does-not-verbalize-the-read-side-fails" id="toc-step-2-the-fv-does-not-verbalize-the-read-side-fails" class="nav-link" data-scroll-target="#step-2-the-fv-does-not-verbalize-the-read-side-fails">Step 2: the FV does not verbalize (the read side fails)</a></li>
-  <li><a href="#step-3-making-the-negative-airtight" id="toc-step-3-making-the-negative-airtight" class="nav-link" data-scroll-target="#step-3-making-the-negative-airtight">Step 3: making the negative airtight</a></li>
+  <li><a href="#step-3-verifying-the-negative" id="toc-step-3-verifying-the-negative" class="nav-link" data-scroll-target="#step-3-verifying-the-negative">Step 3: verifying the negative</a></li>
   <li><a href="#caveats" id="toc-caveats" class="nav-link" data-scroll-target="#caveats">Caveats</a></li>
   </ul>
 </nav>
@@ -179,8 +179,8 @@ ul.task-list li input[type="checkbox"] {
 <p><strong>(b) Verbalize the FV’s <em>effect</em>.</strong> The principled version: add the FV during a forward pass and verbalize the <em>actual</em> layer-20 state it produces (a real, on-distribution activation, just nudged). At first this looked like it worked — the FV-steered <code>Q: France\nA:</code> verbalized as <em>“…what is the capital of…trivia about a country…”</em>.</p>
 <p>But that was <strong>prompt leakage</strong> — the prompt already said “France.” Redo it on <strong>neutral prompts</strong> with no geography (<code>"The answer is"</code>, <code>"I think that"</code>, <code>"It is"</code>) and the country/capital signal vanishes. With and without the FV, the verbalizations are basically identical, and neither mentions countries or capitals.</p>
 </section>
-<section id="step-3-making-the-negative-airtight" class="level2">
-<h2 class="anchored" data-anchor-id="step-3-making-the-negative-airtight">Step 3: making the negative airtight</h2>
+<section id="step-3-verifying-the-negative" class="level2">
+<h2 class="anchored" data-anchor-id="step-3-verifying-the-negative">Step 3: verifying the negative</h2>
 <p>A null only means something if the instrument can detect a true positive and you pushed the intervention hard enough. Two controls:</p>
 <ul>
 <li><strong>Positive control:</strong> score <em>real</em> country→capital states (the layer-20 activation at the answer position of “The capital of France is”) vs.&nbsp;clearly-unrelated states (<code>2+2=</code>, python code, “once upon a time”).</li>
