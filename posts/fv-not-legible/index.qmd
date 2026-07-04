@@ -1,5 +1,5 @@
 ---
-title: "Function vectors steer behavior but don't 'read out' in language"
+title: "Function vectors don't make it through natural-language autoencoders"
 description: "A small controlled negative — and a dissociation worth noticing: the same vector that steers a model leaves no trace in its language readout."
 date: "2026-07-03"
 categories: [function vectors, interpretability, negative results]

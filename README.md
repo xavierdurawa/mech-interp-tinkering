@@ -9,9 +9,9 @@ Built with [Quarto](https://quarto.org). Posts live in `posts/`.
 
 ## Posts
 
-- **Function vectors steer behavior but don't "read out" in language** — a small
-  controlled negative result, and a dissociation between what steers a model and
-  what's verbalizable.
+- **Function vectors don't make it through natural-language autoencoders** — a
+  small controlled negative result, and a dissociation between what steers a
+  model and what's verbalizable.
 
 ## Build
 
