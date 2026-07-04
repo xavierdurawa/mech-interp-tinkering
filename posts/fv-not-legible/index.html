@@ -117,8 +117,6 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#step-1-the-fv-steers-the-write-side-works" id="toc-step-1-the-fv-steers-the-write-side-works" class="nav-link" data-scroll-target="#step-1-the-fv-steers-the-write-side-works">Step 1: the FV steers (the write side works)</a></li>
   <li><a href="#step-2-the-fv-does-not-verbalize-the-read-side-fails" id="toc-step-2-the-fv-does-not-verbalize-the-read-side-fails" class="nav-link" data-scroll-target="#step-2-the-fv-does-not-verbalize-the-read-side-fails">Step 2: the FV does not verbalize (the read side fails)</a></li>
   <li><a href="#step-3-making-the-negative-airtight" id="toc-step-3-making-the-negative-airtight" class="nav-link" data-scroll-target="#step-3-making-the-negative-airtight">Step 3: making the negative airtight</a></li>
-  <li><a href="#the-finding-steering-verbalizability" id="toc-the-finding-steering-verbalizability" class="nav-link" data-scroll-target="#the-finding-steering-verbalizability">The finding: steering ≠ verbalizability</a></li>
-  <li><a href="#why-im-stopping-here-and-what-it-opens" id="toc-why-im-stopping-here-and-what-it-opens" class="nav-link" data-scroll-target="#why-im-stopping-here-and-what-it-opens">Why I’m stopping here (and what it opens)</a></li>
   <li><a href="#caveats" id="toc-caveats" class="nav-link" data-scroll-target="#caveats">Caveats</a></li>
   </ul>
 </nav>
@@ -201,19 +199,6 @@ ul.task-list li input[type="checkbox"] {
 <li><strong>FV-injected states: ~0.54, flat from ×1 to ×8.</strong> They sit in the <em>unrelated</em> band and never move toward the capital band, even when the injection nearly breaks the state.</li>
 </ul>
 <p>So the null in Step 2 is real — not a dead metric, not a too-gentle nudge.</p>
-</section>
-<section id="the-finding-steering-verbalizability" class="level2">
-<h2 class="anchored" data-anchor-id="the-finding-steering-verbalizability">The finding: steering ≠ verbalizability</h2>
-<blockquote class="blockquote">
-<p>The <strong>same function vector</strong> that provably changes the model’s behavior (makes it say “Paris”/“Tokyo”) produces <strong>no detectable change</strong> in the natural-language readout of the resulting state — while a genuine country/capital context reads out loud and clear.</p>
-</blockquote>
-<p>In other words: <strong>function vectors act on the model’s <em>predictive</em> machinery without altering the <em>gist</em> that a natural-language autoencoder reads.</strong> Behavioral effect and verbalizable content are separable properties of an activation.</p>
-<p>A little counterintuitive if you started (like I did) from “FVs write, NLAs read, so NLAs should read what FVs write.” They operate at different granularities. The verbalizer describes the <em>dominant content</em> of a state; an FV is a <em>directional nudge</em> that reshapes the next-token distribution without necessarily changing what the state is mostly “about.” The reader and the writer aren’t looking at the same thing.</p>
-</section>
-<section id="why-im-stopping-here-and-what-it-opens" class="level2">
-<h2 class="anchored" data-anchor-id="why-im-stopping-here-and-what-it-opens">Why I’m stopping here (and what it opens)</h2>
-<p>The idea this pilot was testing — a legible read/write loop over task primitives — needs the reader to see what the writer wrote. It can’t, at least not with these two tools used this way. So that idea’s out.</p>
-<p>But the dissociation suggests a better-posed question, if I (or anyone) wanted to chase it: <strong>when <em>can</em> and <em>can’t</em> natural-language readouts detect activation-space interventions?</strong> FVs are one point — behavioral steering, invisible to the readout. SAE-feature steering, lower-rank perturbations, interventions at the read layer, other readout methods (patchscopes, probes) — those are all open. Mapping which interventions are legible and which are silent would be a real thing. This is just the first data point.</p>
 </section>
 <section id="caveats" class="level2">
 <h2 class="anchored" data-anchor-id="caveats">Caveats</h2>

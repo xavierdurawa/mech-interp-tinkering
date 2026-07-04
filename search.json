@@ -49,20 +49,6 @@
     "text": "Step 3: making the negative airtight\nA null only means something if the instrument can detect a true positive and you pushed the intervention hard enough. Two controls:\n\nPositive control: score real country→capital states (the layer-20 activation at the answer position of “The capital of France is”) vs. clearly-unrelated states (2+2=, python code, “once upon a time”).\nStrong injection: re-run (b) at injection strengths ×1, ×3, ×5, ×8. At ×8 the state is heavily perturbed (cosine to clean drops to 0.62), so this is not a timid nudge.\n\nEverything on one axis:\n\n\n\nFunction-vector-injected states verbalize like unrelated states, not like real country→capital states — even at 8× injection.\n\n\n\nReal capital states: ~0.76. The metric lights up; the verbalizer even describes them as “a famous city in Japan… what is the capital of…”. The instrument is not blind.\nUnrelated states: ~0.55.\nFV-injected states: ~0.54, flat from ×1 to ×8. They sit in the unrelated band and never move toward the capital band, even when the injection nearly breaks the state.\n\nSo the null in Step 2 is real — not a dead metric, not a too-gentle nudge."
   },
   {
-    "objectID": "posts/fv-not-legible/index.html#the-finding-steering-verbalizability",
-    "href": "posts/fv-not-legible/index.html#the-finding-steering-verbalizability",
-    "title": "Function vectors don’t make it through natural-language autoencoders",
-    "section": "The finding: steering ≠ verbalizability",
-    "text": "The finding: steering ≠ verbalizability\n\nThe same function vector that provably changes the model’s behavior (makes it say “Paris”/“Tokyo”) produces no detectable change in the natural-language readout of the resulting state — while a genuine country/capital context reads out loud and clear.\n\nIn other words: function vectors act on the model’s predictive machinery without altering the gist that a natural-language autoencoder reads. Behavioral effect and verbalizable content are separable properties of an activation.\nA little counterintuitive if you started (like I did) from “FVs write, NLAs read, so NLAs should read what FVs write.” They operate at different granularities. The verbalizer describes the dominant content of a state; an FV is a directional nudge that reshapes the next-token distribution without necessarily changing what the state is mostly “about.” The reader and the writer aren’t looking at the same thing."
-  },
-  {
-    "objectID": "posts/fv-not-legible/index.html#why-im-stopping-here-and-what-it-opens",
-    "href": "posts/fv-not-legible/index.html#why-im-stopping-here-and-what-it-opens",
-    "title": "Function vectors don’t make it through natural-language autoencoders",
-    "section": "Why I’m stopping here (and what it opens)",
-    "text": "Why I’m stopping here (and what it opens)\nThe idea this pilot was testing — a legible read/write loop over task primitives — needs the reader to see what the writer wrote. It can’t, at least not with these two tools used this way. So that idea’s out.\nBut the dissociation suggests a better-posed question, if I (or anyone) wanted to chase it: when can and can’t natural-language readouts detect activation-space interventions? FVs are one point — behavioral steering, invisible to the readout. SAE-feature steering, lower-rank perturbations, interventions at the read layer, other readout methods (patchscopes, probes) — those are all open. Mapping which interventions are legible and which are silent would be a real thing. This is just the first data point."
-  },
-  {
     "objectID": "posts/fv-not-legible/index.html#caveats",
     "href": "posts/fv-not-legible/index.html#caveats",
     "title": "Function vectors don’t make it through natural-language autoencoders",
