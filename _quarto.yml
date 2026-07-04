@@ -1,0 +1,17 @@
+project:
+  type: website
+  output-dir: _site
+
+website:
+  title: "mech-interp-tinkering"
+  description: "Informal notes and write-ups from poking at language-model internals."
+  navbar:
+    left:
+      - text: "Home"
+        href: index.qmd
+  page-footer: "Informal musings — not peer-reviewed, not always followed up on."
+
+format:
+  html:
+    theme: cosmo
+    toc: true

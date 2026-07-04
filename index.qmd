@@ -1,0 +1,14 @@
+---
+title: "mech-interp-tinkering"
+listing:
+  contents: posts
+  sort: "date desc"
+  type: default
+  fields: [date, title, description]
+---
+
+Informal notes from tinkering with the internals of language models. These are
+musings and small experiments — some pan out, most don't, and I write up the
+interesting ones (including the ones that didn't work). Not peer-reviewed, not
+exhaustive. If something here ever turns into a real result, it'll get its own
+repo and I'll link it.
