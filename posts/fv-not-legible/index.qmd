@@ -1,7 +1,6 @@
 ---
 title: "Function vectors don't make it through natural-language autoencoders"
 subtitle: "I was interested whether we could see the effect of function vectors on NLA verbalizations. Looks like we can't."
-description: "A small controlled negative — and a dissociation worth noticing: the same vector that steers a model leaves no trace in its language readout."
 date: "2026-07-03"
 categories: [function vectors, interpretability, negative results]
 format:

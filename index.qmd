@@ -4,7 +4,7 @@ listing:
   contents: posts
   sort: "date desc"
   type: default
-  fields: [date, title, description]
+  fields: [date, title, subtitle]
 ---
 
 Informal notes from tinkering with the internals of language models.
