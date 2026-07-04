@@ -2,7 +2,7 @@
   {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "mech-interp-tinkering",
+    "title": "Mechanistic Interpretability Tinkering",
     "section": "",
     "text": "Informal notes from tinkering with the internals of language models.\n\n\n\n\n\n\n\n\n\nFunction vectors don’t make it through natural-language autoencoders\n\n\nA small controlled negative — and a dissociation worth noticing: the same vector that steers a model leaves no trace in its language readout.\n\n\n\n\n\nJul 3, 2026\n\n\n\n\n\nNo matching items"
   },
