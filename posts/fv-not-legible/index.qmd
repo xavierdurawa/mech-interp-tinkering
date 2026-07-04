@@ -11,15 +11,7 @@ format:
 
 ## What I was thinking
 
-I was interested in seeing whether NLAs could be used to understand function vectors, with the potentially broader goal of using NLAs to enable the creation of more general FVs than currently exist in the literature — which are limited to fairly concrete, mechanical operations, with not much in the way of higher-level FVs. But after applying an FV, neither the NLA verbalization nor the AR re-embedding preserved the effect of the FV.
-
-## The two tools, briefly
-
-**Function vectors (FVs)** [Todd et al., 2023]. Give a model a few in-context examples of a task — `France→Paris, Japan→Tokyo, ...` — and it forms a compact internal representation of "the task." You can pull this out as a single vector (a sum of the outputs of the attention heads that carry the task) and *inject* it into a fresh, example-free pass to make the model do the task with no demonstrations. FVs are a **write** interface: a handle you add to the residual stream to make the model *do* something.
-
-**Natural-language autoencoders (NLAs)** [Anthropic / Transformer Circuits, 2026]. A pair of fine-tuned models. The *verbalizer* takes an activation and writes an English description of what it represents; the *reconstructor* goes back from English to a vector. NLAs are a **read** interface.
-
-The idea I was chasing: FVs write, NLAs read — so point the reader at the writer and get **legible, nameable task primitives**. Extract an FV, verbalize it, and it should describe its task. The first thing to check is the most basic link: does an FV verbalize as its task at all?
+I was interested in seeing whether [NLAs](https://transformer-circuits.pub/2026/nla/index.html) could be used to understand [function vectors](https://arxiv.org/abs/2310.15213), with the potentially broader goal of using NLAs to enable the creation of more general FVs than currently exist in the literature — which are limited to fairly concrete, mechanical operations, with not much in the way of higher-level FVs. But after applying an FV, neither the NLA verbalization nor the AR re-embedding preserved the effect of the FV.
 
 ## Setup (the short version)
 
