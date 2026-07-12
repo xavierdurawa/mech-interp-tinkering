@@ -6,8 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="dcterms.date" content="2026-07-12">
 
-<title>Mechanistic Interpretability Tinkering</title>
+<title>Looped transformers solve S5 by re-deriving, not by carrying state – Mechanistic Interpretability Tinkering</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -26,25 +27,23 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-listing/list.min.js"></script>
-<script src="site_libs/quarto-listing/quarto-listing.js"></script>
-<script src="site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-158031087360bce0ff56dc785ce39e06.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-158031087360bce0ff56dc785ce39e06.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -72,65 +71,7 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script>
 
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-listing .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
-
-    const options = {
-      valueNames: ['listing-date','listing-title','listing-subtitle',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
-      
-      searchColumns: ["listing-date","listing-title","listing-author","listing-subtitle","listing-image","listing-description"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  </script>
-
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 </head>
 
@@ -141,7 +82,7 @@ window.Quarto = {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">Mechanistic Interpretability Tinkering</span>
     </a>
   </div>
@@ -152,7 +93,7 @@ window.Quarto = {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="./index.html" aria-current="page"> 
+    <a class="nav-link" href="../../index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
 </ul>
@@ -166,22 +107,47 @@ window.Quarto = {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul class="collapse">
+  <li><a href="#what-i-was-thinking" id="toc-what-i-was-thinking" class="nav-link active" data-scroll-target="#what-i-was-thinking">What I was thinking</a></li>
+  <li><a href="#what-i-actually-did-in-order" id="toc-what-i-actually-did-in-order" class="nav-link" data-scroll-target="#what-i-actually-did-in-order">What I actually did (in order)</a></li>
+  <li><a href="#the-looped-model-generalizes-better-but-not-reliably" id="toc-the-looped-model-generalizes-better-but-not-reliably" class="nav-link" data-scroll-target="#the-looped-model-generalizes-better-but-not-reliably">The looped model generalizes better — but not reliably</a></li>
+  <li><a href="#the-causal-test-its-re-deriving-not-carrying" id="toc-the-causal-test-its-re-deriving-not-carrying" class="nav-link" data-scroll-target="#the-causal-test-its-re-deriving-not-carrying">The causal test: it’s re-deriving, not carrying</a></li>
+  <li><a href="#checking-i-didnt-fool-myself" id="toc-checking-i-didnt-fool-myself" class="nav-link" data-scroll-target="#checking-i-didnt-fool-myself">Checking I didn’t fool myself</a></li>
+  <li><a href="#where-this-leaves-me" id="toc-where-this-leaves-me" class="nav-link" data-scroll-target="#where-this-leaves-me">Where this leaves me</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Mechanistic Interpretability Tinkering</h1>
-</div>
+<h1 class="title">Looped transformers solve S5 by re-deriving, not by carrying state</h1>
+<p class="subtitle lead">I hoped forcing recurrence would make a transformer carry a running state. It length-generalizes better — but a causal swap says it’s still re-deriving every step. And getting even that to happen reliably is its own puzzle.</p>
+  <div class="quarto-categories">
+    <div class="quarto-category">state tracking</div>
+    <div class="quarto-category">length generalization</div>
+    <div class="quarto-category">looped transformers</div>
+    <div class="quarto-category">interpretability</div>
+    <div class="quarto-category">negative results</div>
+  </div>
+  </div>
 
 
 
 <div class="quarto-title-meta">
 
     
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">July 12, 2026</p>
+    </div>
+  </div>
   
     
   </div>
@@ -191,50 +157,66 @@ window.Quarto = {
 </header>
 
 
-<p>Informal notes from tinkering with the internals of language models.</p>
+<section id="what-i-was-thinking" class="level2">
+<h2 class="anchored" data-anchor-id="what-i-was-thinking">What I was thinking</h2>
+<p>Beginning to work on a longer-term project to try and identify slices of a circuit that operate on spans larger than a single token. As a starting point, I wanted to study a simplified toy model capable of the cleanest version of that: <strong>tracking a running state across a sequence</strong>. Permutation composition on S₅ is a nice fit — you’re handed a sequence of permutations and have to report the running composition after each one — because it forces a genuine span-level computation and there’s a sharp distinction between two ways to do it.</p>
+<p>You can <strong>carry</strong> a running state and update it each step (the “real” span-level algorithm — the thing I ultimately want to find circuits <em>for</em>), or you can <strong>re-derive</strong> the state at each position from scratch by looking back over all the raw actions (a shortcut that happens to work). Which one a model actually does is exactly the kind of question the broader project is about, and S₅ lets me ask it in a setting clean enough to answer causally.</p>
+<p>The goal is a model that solves the task the way you’re <em>supposed</em> to: hold a running state and update it each step. That carried state is the span-level computation I want to study, so I need a model that genuinely builds one — not one that fakes the answer with a lookback shortcut.</p>
+<p>Plain transformers <em>can</em> learn to do this — <a href="https://arxiv.org/abs/2503.02854">Li et al.</a> show they’ll sometimes find the proper carry-style algorithm and length-generalize impressively far. The catch is that they find it <strong>unreliably</strong>: whether a given training run lands on the genuine algorithm or on a brittle shortcut that breaks past the training length seems to come down to the luck of initialization and data order.</p>
+<p>My hope was that a <strong>looped transformer</strong> — a weight-tied block repeated more times for longer inputs, à la <a href="https://arxiv.org/abs/2409.15647">Fan et al.</a> — would make the carry solution the <em>default</em> rather than a lucky draw, by handing the model depth that scales with the input the way a genuine step-by-step computation would need. But this turned out to just provide the model with the extra depth it needed to better execute the shortcut computational approach — re-deriving the state more effectively — without ever learning the carried state.</p>
+</section>
+<section id="what-i-actually-did-in-order" class="level2">
+<h2 class="anchored" data-anchor-id="what-i-actually-did-in-order">What I actually did (in order)</h2>
+<p><strong>First, just try to reproduce Li.</strong> I trained a plain Pythia-160M on the S₅ task the way the paper describes and gated it for length generalization. It learned to track — but only shallowly, holding up to about depth 9–12 before falling apart, nowhere near the numbers the paper reports (up to ~106). So: a genuine tracker, but a weak one, and not the reliable long-range carry I was after.</p>
+<p><strong>Maybe it was the seed.</strong> Li is explicit that the good algorithm is a lottery of initialization and data order — they report <em>proportions</em> over as many as 20 replicates. So I ran a few more seeds. They all clustered in the same 9–12 band. No seed broke out into the deep-generalizing regime; the variation was in <em>shallow</em> tracking depth, not in whether it generalized at all.</p>
+<p><strong>Was the training even trending the right way?</strong> Before sinking a full multi-day sweep into seed-hunting, I ran a couple of truncated runs and looked at the early mechanism signature — was anything heading toward the good solution given more time? Nothing obviously was. The runs looked like they were settling into the same shallow shortcut, not slowly grokking their way toward carry.</p>
+<p><strong>So I pivoted.</strong> Between the flat seed results and a limited compute budget, chasing a lucky plain-transformer run looked like a bad bet. The more interesting question was whether a <em>different architecture</em> would exhibit the carry behavior more reliably — which is what took me to the looped transformer.</p>
+</section>
+<section id="the-looped-model-generalizes-better-but-not-reliably" class="level2">
+<h2 class="anchored" data-anchor-id="the-looped-model-generalizes-better-but-not-reliably">The looped model generalizes better — but not reliably</h2>
+<p>A 4-layer looped block does length-generalize on S₅ where the plain transformer capped out. Trained to length 24, it stays near-perfect out to ~depth 30 and degrades gracefully past that — clearly beating the ~9–12 ceiling I kept hitting with the vanilla model.</p>
+<p>But here’s the first surprise: <strong>it only happens on about 2 of 3 seeds.</strong> Same architecture, same data, same recipe — two seeds generalize cleanly (cutoff ~25, ~0.98 accuracy); the third lands in a failing regime and never gets off the ground (~chance). This mirrors the lottery Li describes for plain transformers — the mechanism you get is partly luck of init and data order — except looping seems to <em>raise the odds</em> rather than remove the lottery.</p>
+</section>
+<section id="the-causal-test-its-re-deriving-not-carrying" class="level2">
+<h2 class="anchored" data-anchor-id="the-causal-test-its-re-deriving-not-carrying">The causal test: it’s re-deriving, not carrying</h2>
+<p>For the seeds that <em>do</em> generalize, I ran a directed counterfactual swap. The idea: at some position, overwrite the model’s internal running state with a <em>different</em> valid state (a class-mean translation in the residual stream — an on-manifold edit), then watch what happens downstream.</p>
+<ul>
+<li>If the model <strong>carries</strong> state, corrupting it at position <em>p</em> should corrupt everything after <em>p</em> — the wrong state propagates forward.</li>
+<li>If the model <strong>re-derives</strong>, downstream positions recompute the correct state from the raw actions and shrug off the swap.</li>
+</ul>
+<p>The result was unambiguous:</p>
+<ul>
+<li><strong>At the swapped position:</strong> the edit takes — the model reports the counterfactual state (~99%).</li>
+<li><strong>One or more positions downstream:</strong> the model reports the <em>correct original</em> state ~100% of the time. The perturbation does not propagate at all.</li>
+</ul>
+<p>That’s the <strong>re-derive</strong> signature — the same one the plain model shows.</p>
+<p>I also probed along the loop-iteration axis, and it tells a consistent story: the state at a position <em>is</em> built up progressively across loop iterations (undecodable for the first few iterations, then snapping in around iteration 4–6). So the recurrence is doing real sequential computation — it’s just spending that computation <strong>re-deriving each position to more depth</strong>, not threading a running state across positions.</p>
+<p>So the mechanism is something like <em>“parallel-per-position, deepened-by-iteration.”</em> Looping buys a higher length-generalization ceiling by giving each position more effective depth to re-derive with — not by teaching the model to carry.</p>
+</section>
+<section id="checking-i-didnt-fool-myself" class="level2">
+<h2 class="anchored" data-anchor-id="checking-i-didnt-fool-myself">Checking I didn’t fool myself</h2>
+<p>A no-propagation result is easy to get for boring reasons — swapped at the wrong spot, swapped too late, one lucky sequence — so I swept it:</p>
+<ul>
+<li><strong>Position:</strong> swapped at positions 2, 6, and 10 — identical re-derive signature at all three.</li>
+<li><strong>Timing:</strong> injected the perturbation both late (final loop iteration) and early (iteration 4, right as the state first becomes decodable) — still no downstream propagation either way.</li>
+<li><strong>Seeds:</strong> both generalizing seeds give near-identical numbers.</li>
+<li><strong>The failing seed</strong> never tracks well enough for the analysis to have anything to bite on — which is itself a check that the tooling isn’t manufacturing signal.</li>
+</ul>
+<p>The one thing I <em>haven’t</em> fully pinned down: my counterfactual edit is a class-mean translation, and I’d want to confirm that operator is a faithful stand-in for the model’s real state-direction before leaning too hard on the quantitative claim. Treat the numbers as strong-but-preliminary.</p>
+</section>
+<section id="where-this-leaves-me" class="level2">
+<h2 class="anchored" data-anchor-id="where-this-leaves-me">Where this leaves me</h2>
+<p>Two tentative takeaways:</p>
+<ol type="1">
+<li><strong>Even an architecture built for recurrence didn’t discover the carry algorithm.</strong> It found a better <em>re-derivation</em> instead. If carry is what you want, looping alone may not get you there — the natural follow-up is architectures with genuine sequential state (DeltaNet / DeltaProduct-style linear-attention variants), the one family theorized to actually carry.</li>
+<li><strong>Reliability is the sharper question.</strong> The fact that the “good” solution only shows up ~2/3 of the time — and that this seems to be a property of the optimization, not just the architecture — is the thread I find most worth pulling. What makes a training run land in the generalizing basin versus the failing one?</li>
+</ol>
+<p>This is very much tinkering-in-progress, and I’m not convinced I won’t come back to it — getting reliable carry to actually <em>occur</em> feels like a genuinely interesting research question, not just an engineering nuisance.</p>
 
 
+</section>
 
-
-<div class="quarto-listing quarto-listing-container-default" id="listing-listing">
-<div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-categories="c3RhdGUlMjB0cmFja2luZyUyQ2xlbmd0aCUyMGdlbmVyYWxpemF0aW9uJTJDbG9vcGVkJTIwdHJhbnNmb3JtZXJzJTJDaW50ZXJwcmV0YWJpbGl0eSUyQ25lZ2F0aXZlJTIwcmVzdWx0cw==" data-listing-date-sort="1783828800000" data-listing-file-modified-sort="1783874474707" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="7" data-listing-word-count-sort="1291">
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/looped-s5-rederive/index.html" class="no-external">Looped transformers solve S5 by re-deriving, not by carrying state</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/looped-s5-rederive/index.html" class="no-external">I hoped forcing recurrence would make a transformer carry a running state. It length-generalizes better — but a causal swap says it’s still re-deriving every step. And getting even that to happen reliably is its own puzzle.</a>
-</div>
-</div>
-<div class="metadata">
-<a href="./posts/looped-s5-rederive/index.html" class="no-external">
-<div class="listing-date">
-Jul 12, 2026
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="1" data-categories="ZnVuY3Rpb24lMjB2ZWN0b3JzJTJDaW50ZXJwcmV0YWJpbGl0eSUyQ25lZ2F0aXZlJTIwcmVzdWx0cw==" data-listing-date-sort="1783051200000" data-listing-file-modified-sort="1783141114199" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="607">
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/fv-not-legible/index.html" class="no-external">Function vectors don’t make it through natural-language autoencoders</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/fv-not-legible/index.html" class="no-external">I was interested whether we could see the effect of function vectors on NLA verbalizations. Looks like we can’t.</a>
-</div>
-</div>
-<div class="metadata">
-<a href="./posts/fv-not-legible/index.html" class="no-external">
-<div class="listing-date">
-Jul 3, 2026
-</div>
-</a>
-</div>
-</div>
-</div>
-<div class="listing-no-matching d-none">No matching items</div>
-</div></main> <!-- /main -->
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
