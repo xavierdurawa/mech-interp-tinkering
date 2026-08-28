@@ -6,8 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="dcterms.date" content="2026-08-27">
 
-<title>Mechanistic Interpretability Tinkering</title>
+<title>A month of poking at plans: two things that held up, eight that didn’t – Mechanistic Interpretability Tinkering</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -26,25 +27,23 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-listing/list.min.js"></script>
-<script src="site_libs/quarto-listing/quarto-listing.js"></script>
-<script src="site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-158031087360bce0ff56dc785ce39e06.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-158031087360bce0ff56dc785ce39e06.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -72,65 +71,7 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script>
 
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-listing .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
-
-    const options = {
-      valueNames: ['listing-date','listing-title','listing-subtitle',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
-      
-      searchColumns: ["listing-date","listing-title","listing-author","listing-subtitle","listing-image","listing-description"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  </script>
-
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 </head>
 
@@ -141,7 +82,7 @@ window.Quarto = {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">Mechanistic Interpretability Tinkering</span>
     </a>
   </div>
@@ -152,7 +93,7 @@ window.Quarto = {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="./index.html" aria-current="page"> 
+    <a class="nav-link" href="../../index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
 </ul>
@@ -166,22 +107,49 @@ window.Quarto = {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul class="collapse">
+  <li><a href="#what-i-was-thinking" id="toc-what-i-was-thinking" class="nav-link active" data-scroll-target="#what-i-was-thinking">What I was thinking</a></li>
+  <li><a href="#the-tool-blocking-attention-but-only-for-some-queries" id="toc-the-tool-blocking-attention-but-only-for-some-queries" class="nav-link" data-scroll-target="#the-tool-blocking-attention-but-only-for-some-queries">The tool: blocking attention, but only for some queries</a></li>
+  <li><a href="#thing-1-the-plan-gets-read-and-the-rhyme-word-doesnt" id="toc-thing-1-the-plan-gets-read-and-the-rhyme-word-doesnt" class="nav-link" data-scroll-target="#thing-1-the-plan-gets-read-and-the-rhyme-word-doesnt">Thing 1: the plan gets read, and the rhyme word doesn’t</a></li>
+  <li><a href="#thing-2-the-model-reads-its-own-reasoning-not-the-question" id="toc-thing-2-the-model-reads-its-own-reasoning-not-the-question" class="nav-link" data-scroll-target="#thing-2-the-model-reads-its-own-reasoning-not-the-question">Thing 2: the model reads its own reasoning, not the question</a></li>
+  <li><a href="#the-eight-that-didnt-work" id="toc-the-eight-that-didnt-work" class="nav-link" data-scroll-target="#the-eight-that-didnt-work">The eight that didn’t work</a></li>
+  <li><a href="#what-id-actually-tell-someone-doing-this" id="toc-what-id-actually-tell-someone-doing-this" class="nav-link" data-scroll-target="#what-id-actually-tell-someone-doing-this">What I’d actually tell someone doing this</a></li>
+  <li><a href="#why-im-stopping" id="toc-why-im-stopping" class="nav-link" data-scroll-target="#why-im-stopping">Why I’m stopping</a></li>
+  <li><a href="#caveats" id="toc-caveats" class="nav-link" data-scroll-target="#caveats">Caveats</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Mechanistic Interpretability Tinkering</h1>
-</div>
+<h1 class="title">A month of poking at plans: two things that held up, eight that didn’t</h1>
+<p class="subtitle lead">I wanted to watch a plan form and dissolve inside a model as it writes. Dissolution turned out not to be a thing. But the plan does get read — late, and barely.</p>
+  <div class="quarto-categories">
+    <div class="quarto-category">planning</div>
+    <div class="quarto-category">attention</div>
+    <div class="quarto-category">chain of thought</div>
+    <div class="quarto-category">interpretability</div>
+    <div class="quarto-category">negative results</div>
+  </div>
+  </div>
 
 
 
 <div class="quarto-title-meta">
 
     
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">August 27, 2026</p>
+    </div>
+  </div>
   
     
   </div>
@@ -191,67 +159,67 @@ window.Quarto = {
 </header>
 
 
-<p>Informal notes from tinkering with the internals of language models.</p>
+<section id="what-i-was-thinking" class="level2">
+<h2 class="anchored" data-anchor-id="what-i-was-thinking">What I was thinking</h2>
+<p>There’s a nice result from the poetry-planning work where a model writing a rhyming couplet seems to pick the rhyme word <em>early</em> — it’s sitting there in the representation at the line break, before the model has written the line that leads up to it. Ma &amp; Rui localized that pretty precisely, and then said something I found irresistible: patching shows the plan is <strong>encoded</strong> there, but it can’t tell you whether the model ever actually <strong>reads</strong> it.</p>
+<p>So that was the question. And I wanted the fuller version: if a plan forms, presumably it also gets used and then <em>goes away</em>. Formation, persistence, dissolution. Watch the whole lifecycle.</p>
+<p>Everything ran locally on a laptop (gemma-2-9b-it), no training, total spend $0.</p>
+</section>
+<section id="the-tool-blocking-attention-but-only-for-some-queries" class="level2">
+<h2 class="anchored" data-anchor-id="the-tool-blocking-attention-but-only-for-some-queries">The tool: blocking attention, but only for some queries</h2>
+<p>The trick that made this work: instead of ablating a position, I block attention <strong>from</strong> a chosen set of query positions <strong>to</strong> a chosen set of key positions. So I can let the prompt’s own forward pass see the newline normally, and only starve the <em>later</em> positions of it.</p>
+<p>That difference is the whole measurement. If blocking a source for everyone hurts but blocking it only for late positions doesn’t, the information was extracted early and cached. If starving the late positions hurts, it’s being read at that moment. It time-stamps <em>when</em> something was consulted.</p>
+</section>
+<section id="thing-1-the-plan-gets-read-and-the-rhyme-word-doesnt" class="level2">
+<h2 class="anchored" data-anchor-id="thing-1-the-plan-gets-read-and-the-rhyme-word-doesnt">Thing 1: the plan gets read, and the rhyme word doesn’t</h2>
+<p>Blocking line two’s access to the comma-and-newline at the end of line one costs <strong>1.47 nats</strong> on the eventual rhyme word (n=37). The newline by itself costs <strong>0.64</strong>. A matched content word from the same line costs nothing (+0.06). So it’s specifically the boundary, not “line one” in general.</p>
+<p>Now the fun part. Blocking the actual <strong>rhyme word of line one</strong> — the thing the second line has to rhyme <em>with</em> — costs <strong>nothing at all</strong> (+0.03, not significant). The model isn’t looking back at the word it needs to rhyme with. It’s looking at the boundary where it stashed its decision.</p>
+<p>And it reads late. Nothing at all 9 tokens out. Dependence shows up in the last ~6 tokens, peaks around 3 tokens before the word is due. Also it barely needs the channel — scale that attention down to 10% and the cost mostly vanishes (0.04 nats).</p>
+<p>So: written early, read just-in-time, through a narrow pipe.</p>
+</section>
+<section id="thing-2-the-model-reads-its-own-reasoning-not-the-question" class="level2">
+<h2 class="anchored" data-anchor-id="thing-2-the-model-reads-its-own-reasoning-not-the-question">Thing 2: the model reads its own reasoning, not the question</h2>
+<p>Different substrate, same tool. Arithmetic word problems the model gets right 15% of the time in one shot and 100% of the time with a chain of thought.</p>
+<p>Take the successful runs and make the trace <strong>write-only</strong> — the tokens are all still there, literally not one character changed, but the final answer position can’t attend to them. Accuracy goes 1.00 → 0.00, twenty for twenty. Matched control condition: 1.00. Fine, expected.</p>
+<p>The bit I liked: block the <strong>question</strong> instead and accuracy stays at 1.00, all twenty. Once the trace exists the model has stopped consulting the problem statement. The reasoning has superseded its own input.</p>
+<p>And it’s not just copying the answer out of its own scratchpad — that was my first suspicion. The answer’s digits literally appear in the trace, so maybe the model is just reading them off. Block <em>only</em> those occurrences: costs 0.001 nats and preserves the argmax on all 20. Block the trace <em>minus</em> those occurrences: 1.68 nats and 80% of the answers break. It’s using the reasoning, not the number.</p>
+</section>
+<section id="the-eight-that-didnt-work" class="level2">
+<h2 class="anchored" data-anchor-id="the-eight-that-didnt-work">The eight that didn’t work</h2>
+<p>I set out with a bunch of ambitious hypotheses. Eight of nine died, mostly to controls I ran myself, which is the system working but is also a lot of dead ends:</p>
+<ul>
+<li><strong>Dissolution isn’t a thing</strong> (the premise!). Plans don’t terminate, they get released and re-activated as they become relevant again. 71/71 poems.</li>
+<li><strong>Provenance</strong> — does it matter if the model chose the constraint vs.&nbsp;was given it? No; the self-generated case was the <em>most</em> source-dependent, opposite of the prediction.</li>
+<li><strong>Compressibility</strong> — no gradient at all.</li>
+<li><strong>A “slot” hypothesis</strong> about tokenization and boundaries — pilot looked great at n≈10, died in all three models when properly powered.</li>
+<li><strong>Prose redundancy, threshold-reading, margin-as-object, mechanistic unfaithfulness detection</strong> — all killed, mostly by powered replications of my own underpowered pilots.</li>
+</ul>
+<p>Pattern I can’t ignore: the two things that survived were both me answering <em>somebody else’s</em> explicitly stated open question. The eight corpses were all my own clever ideas.</p>
+</section>
+<section id="what-id-actually-tell-someone-doing-this" class="level2">
+<h2 class="anchored" data-anchor-id="what-id-actually-tell-someone-doing-this">What I’d actually tell someone doing this</h2>
+<p>Honestly this might be the useful part of the whole month:</p>
+<ul>
+<li><strong>Attention mass does not tell you what matters causally — and whether it does is model-dependent.</strong> Top-5 heads by attention mass were <strong>1%</strong> of the effect on the 2B model (the causally important heads ranked 6th and 8th). On the 9B, top-10 were <strong>95%</strong>. Same method, opposite conclusion. Everybody publishes the success case.</li>
+<li><strong>Readable ≠ used, and unreadable ≠ unused.</strong> I had a constraint that was causally decisive while being invisible to the lens, and separately a readout I could degrade to nothing with zero behavioral effect. A probe can be wrong in both directions.</li>
+<li><strong>Binary ablation and graded attenuation tell different stories.</strong> I confidently had a “knife-edge” result — flat until 15% bandwidth, then a cliff — which dissolved into a boring gradual decline once I ran a finer grid.</li>
+<li><strong>With a continuous DV you can get p=1e-06 on a difference of 0.001 nats.</strong> Effect size is the only endpoint worth reporting.</li>
+<li><strong>Two silent bugs each would have inverted a conclusion</strong>, both caught by controls rather than by me being clever. One was a torch/MPS dtype-conversion returning all zeros, so an entire causal run was a no-op that looked like a clean null.</li>
+</ul>
+</section>
+<section id="why-im-stopping" class="level2">
+<h2 class="anchored" data-anchor-id="why-im-stopping">Why I’m stopping</h2>
+<p>The instrument works and I like the two results, but a 9B model with hand-built tasks on one laptop bounds how big a finding is available, and I don’t think this line has a big one in it. Setting it down.</p>
+<p>The one thing I’d want if I picked it back up: a boundary-specificity control on Thing 1. My control rules out generic <em>content</em> dependence but not generic <em>boundary</em> dependence — a mid-line comma, or the same boundary in a task with no rhyme to plan. Cheap, and it’s the claim most exposed to a confound.</p>
+</section>
+<section id="caveats" class="level2">
+<h2 class="anchored" data-anchor-id="caveats">Caveats</h2>
+<p>One model, one seed of each task, n=37 and n=20. Thing 1 is a nearby model to Ma &amp; Rui’s rather than theirs (their result is on Gemma-3-27B, which doesn’t fit on my laptop), so treat it as an independent instrument agreeing rather than a replication. Everything is teacher-forced at a chosen readout position, not free generation.</p>
 
 
+</section>
 
-
-<div class="quarto-listing quarto-listing-container-default" id="listing-listing">
-<div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-categories="cGxhbm5pbmclMkNhdHRlbnRpb24lMkNjaGFpbiUyMG9mJTIwdGhvdWdodCUyQ2ludGVycHJldGFiaWxpdHklMkNuZWdhdGl2ZSUyMHJlc3VsdHM=" data-listing-date-sort="1787803200000" data-listing-file-modified-sort="1787886457882" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="6" data-listing-word-count-sort="1091">
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/plans-read-just-in-time/index.html" class="no-external">A month of poking at plans: two things that held up, eight that didn’t</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/plans-read-just-in-time/index.html" class="no-external">I wanted to watch a plan form and dissolve inside a model as it writes. Dissolution turned out not to be a thing. But the plan does get read — late, and barely.</a>
-</div>
-</div>
-<div class="metadata">
-<a href="./posts/plans-read-just-in-time/index.html" class="no-external">
-<div class="listing-date">
-Aug 27, 2026
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="1" data-categories="c3RhdGUlMjB0cmFja2luZyUyQ2xlbmd0aCUyMGdlbmVyYWxpemF0aW9uJTJDbG9vcGVkJTIwdHJhbnNmb3JtZXJzJTJDaW50ZXJwcmV0YWJpbGl0eSUyQ25lZ2F0aXZlJTIwcmVzdWx0cw==" data-listing-date-sort="1783828800000" data-listing-file-modified-sort="1783874474707" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="7" data-listing-word-count-sort="1291">
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/looped-s5-rederive/index.html" class="no-external">Looped transformers solve S5 by re-deriving, not by carrying state</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/looped-s5-rederive/index.html" class="no-external">I hoped forcing recurrence would make a transformer carry a running state. It length-generalizes better — but a causal swap says it’s still re-deriving every step. And getting even that to happen reliably is its own puzzle.</a>
-</div>
-</div>
-<div class="metadata">
-<a href="./posts/looped-s5-rederive/index.html" class="no-external">
-<div class="listing-date">
-Jul 12, 2026
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="2" data-categories="ZnVuY3Rpb24lMjB2ZWN0b3JzJTJDaW50ZXJwcmV0YWJpbGl0eSUyQ25lZ2F0aXZlJTIwcmVzdWx0cw==" data-listing-date-sort="1783051200000" data-listing-file-modified-sort="1783141114199" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="607">
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/fv-not-legible/index.html" class="no-external">Function vectors don’t make it through natural-language autoencoders</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/fv-not-legible/index.html" class="no-external">I was interested whether we could see the effect of function vectors on NLA verbalizations. Looks like we can’t.</a>
-</div>
-</div>
-<div class="metadata">
-<a href="./posts/fv-not-legible/index.html" class="no-external">
-<div class="listing-date">
-Jul 3, 2026
-</div>
-</a>
-</div>
-</div>
-</div>
-<div class="listing-no-matching d-none">No matching items</div>
-</div></main> <!-- /main -->
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
