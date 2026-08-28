@@ -1,0 +1,76 @@
+---
+title: "A month of poking at plans: two things that held up, eight that didn't"
+subtitle: "I wanted to watch a plan form and dissolve inside a model as it writes. Dissolution turned out not to be a thing. But the plan does get read — late, and barely."
+date: "2026-08-27"
+categories: [planning, attention, chain of thought, interpretability, negative results]
+format:
+  html:
+    toc: true
+    toc-depth: 2
+---
+
+## What I was thinking
+
+There's a nice result from the poetry-planning work where a model writing a rhyming couplet seems to pick the rhyme word *early* — it's sitting there in the representation at the line break, before the model has written the line that leads up to it. Ma & Rui localized that pretty precisely, and then said something I found irresistible: patching shows the plan is **encoded** there, but it can't tell you whether the model ever actually **reads** it.
+
+So that was the question. And I wanted the fuller version: if a plan forms, presumably it also gets used and then *goes away*. Formation, persistence, dissolution. Watch the whole lifecycle.
+
+Everything ran locally on a laptop (gemma-2-9b-it), no training, total spend $0.
+
+## The tool: blocking attention, but only for some queries
+
+The trick that made this work: instead of ablating a position, I block attention **from** a chosen set of query positions **to** a chosen set of key positions. So I can let the prompt's own forward pass see the newline normally, and only starve the *later* positions of it.
+
+That difference is the whole measurement. If blocking a source for everyone hurts but blocking it only for late positions doesn't, the information was extracted early and cached. If starving the late positions hurts, it's being read at that moment. It time-stamps *when* something was consulted.
+
+## Thing 1: the plan gets read, and the rhyme word doesn't
+
+Blocking line two's access to the comma-and-newline at the end of line one costs **1.47 nats** on the eventual rhyme word (n=37). The newline by itself costs **0.64**. A matched content word from the same line costs nothing (+0.06). So it's specifically the boundary, not "line one" in general.
+
+Now the fun part. Blocking the actual **rhyme word of line one** — the thing the second line has to rhyme *with* — costs **nothing at all** (+0.03, not significant). The model isn't looking back at the word it needs to rhyme with. It's looking at the boundary where it stashed its decision.
+
+And it reads late. Nothing at all 9 tokens out. Dependence shows up in the last ~6 tokens, peaks around 3 tokens before the word is due. Also it barely needs the channel — scale that attention down to 10% and the cost mostly vanishes (0.04 nats).
+
+So: written early, read just-in-time, through a narrow pipe.
+
+## Thing 2: the model reads its own reasoning, not the question
+
+Different substrate, same tool. Arithmetic word problems the model gets right 15% of the time in one shot and 100% of the time with a chain of thought.
+
+Take the successful runs and make the trace **write-only** — the tokens are all still there, literally not one character changed, but the final answer position can't attend to them. Accuracy goes 1.00 → 0.00, twenty for twenty. Matched control condition: 1.00. Fine, expected.
+
+The bit I liked: block the **question** instead and accuracy stays at 1.00, all twenty. Once the trace exists the model has stopped consulting the problem statement. The reasoning has superseded its own input.
+
+And it's not just copying the answer out of its own scratchpad — that was my first suspicion. The answer's digits literally appear in the trace, so maybe the model is just reading them off. Block *only* those occurrences: costs 0.001 nats and preserves the argmax on all 20. Block the trace *minus* those occurrences: 1.68 nats and 80% of the answers break. It's using the reasoning, not the number.
+
+## The eight that didn't work
+
+I set out with a bunch of ambitious hypotheses. Eight of nine died, mostly to controls I ran myself, which is the system working but is also a lot of dead ends:
+
+- **Dissolution isn't a thing** (the premise!). Plans don't terminate, they get released and re-activated as they become relevant again. 71/71 poems.
+- **Provenance** — does it matter if the model chose the constraint vs. was given it? No; the self-generated case was the *most* source-dependent, opposite of the prediction.
+- **Compressibility** — no gradient at all.
+- **A "slot" hypothesis** about tokenization and boundaries — pilot looked great at n≈10, died in all three models when properly powered.
+- **Prose redundancy, threshold-reading, margin-as-object, mechanistic unfaithfulness detection** — all killed, mostly by powered replications of my own underpowered pilots.
+
+Pattern I can't ignore: the two things that survived were both me answering *somebody else's* explicitly stated open question. The eight corpses were all my own clever ideas.
+
+## What I'd actually tell someone doing this
+
+Honestly this might be the useful part of the whole month:
+
+- **Attention mass does not tell you what matters causally — and whether it does is model-dependent.** Top-5 heads by attention mass were **1%** of the effect on the 2B model (the causally important heads ranked 6th and 8th). On the 9B, top-10 were **95%**. Same method, opposite conclusion. Everybody publishes the success case.
+- **Readable ≠ used, and unreadable ≠ unused.** I had a constraint that was causally decisive while being invisible to the lens, and separately a readout I could degrade to nothing with zero behavioral effect. A probe can be wrong in both directions.
+- **Binary ablation and graded attenuation tell different stories.** I confidently had a "knife-edge" result — flat until 15% bandwidth, then a cliff — which dissolved into a boring gradual decline once I ran a finer grid.
+- **With a continuous DV you can get p=1e-06 on a difference of 0.001 nats.** Effect size is the only endpoint worth reporting.
+- **Two silent bugs each would have inverted a conclusion**, both caught by controls rather than by me being clever. One was a torch/MPS dtype-conversion returning all zeros, so an entire causal run was a no-op that looked like a clean null.
+
+## Why I'm stopping
+
+The instrument works and I like the two results, but a 9B model with hand-built tasks on one laptop bounds how big a finding is available, and I don't think this line has a big one in it. Setting it down.
+
+The one thing I'd want if I picked it back up: a boundary-specificity control on Thing 1. My control rules out generic *content* dependence but not generic *boundary* dependence — a mid-line comma, or the same boundary in a task with no rhyme to plan. Cheap, and it's the claim most exposed to a confound.
+
+## Caveats
+
+One model, one seed of each task, n=37 and n=20. Thing 1 is a nearby model to Ma & Rui's rather than theirs (their result is on Gemma-3-27B, which doesn't fit on my laptop), so treat it as an independent instrument agreeing rather than a replication. Everything is teacher-forced at a chosen readout position, not free generation.
