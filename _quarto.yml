@@ -5,6 +5,11 @@ project:
 website:
   title: "Mechanistic Interpretability Tinkering"
   description: "Notes and write-ups from tinkering with language-model internals."
+  # Puts "Edit this page" / "View source" / "Report an issue" on every rendered
+  # page, linking to the .qmd source on the branch named below (not gh-pages).
+  repo-url: https://github.com/xavierdurawa/mech-interp-tinkering
+  repo-branch: main
+  repo-actions: [edit, source, issue]
   navbar:
     left:
       - text: "Home"
