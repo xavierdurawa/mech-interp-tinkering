@@ -1,0 +1,36 @@
+# Renders the site on every push to main and deploys it to gh-pages.
+#
+# This is what makes "Edit this page" actually update the live site: without it,
+# editing a .qmd on GitHub only changes the source and the published page stays
+# stale until someone re-renders locally.
+#
+# NOTE: with this enabled, stop running `quarto publish gh-pages` by hand — two
+# publishers racing on the same branch will clobber each other. Pick one.
+#
+# Safe to run in CI because the posts are pure markdown: no executable cells, no
+# venv, no model weights, nothing to fetch.
+name: Publish site
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: quarto-dev/quarto-actions/setup@v2
+        with:
+          version: 1.9.38
+
+      - uses: quarto-dev/quarto-actions/publish@v2
+        with:
+          target: gh-pages
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
